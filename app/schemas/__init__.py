@@ -6,4 +6,5 @@ from .question_output import QuestionOutputSchema
 
 answer_input_schema = AnswerInputSchema()
 question_input_schema = QuestionInputSchema()
+question_output_schema = QuestionOutputSchema()
 questions_output_schema = QuestionOutputSchema(many=True)
