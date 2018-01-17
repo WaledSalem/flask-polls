@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Poll Admin</title>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Polling Admin</h1>
+    <h2>Add a new question</h2>
+    <form action="/api/questions" method="post">
+        <label>
+            <span>Question</span>
+            <input required type="text" name="question_body" />
+        </label>
+        <label>
+            <span>Answer 1</span>
+            <input required type="text" name="answer" />
+        </label>
+        <label>
+            <span>Answer 2</span>
+            <input required type="text" name="answer" />
+        </label>
+        <label>
+            <span>Answer 3</span>
+            <input type="text" name="answer" />
+        </label>
+        <label>
+            <span>Answer 4</span>
+            <input type="text" name="answer" />
+        </label>
+        <label>
+            <span>Correct answer index</span>
+            <input required type="number" value="0" min="0" max="3" step="1" name="correct_answer_index" />
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>

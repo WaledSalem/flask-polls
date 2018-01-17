@@ -1,0 +1,21 @@
+{
+    "python.pythonPath": "${workspaceFolder}/env/bin/python3",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/__pycache__": true,
+        "**/.DS_Store": true,
+        "env/**": true,
+        "public/dist/**": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/__pycache__": true,
+        "env/**": true,
+        "public/dist/**": true
+    },
+    "python.linting.pylintEnabled": false
+}
