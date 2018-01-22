@@ -20,3 +20,7 @@ ma = Marshmallow(app)
 api = Api(app, prefix='/api')
 
 from app import resources, routes
+
+# Create dtabases and tables if it is the first run
+db.create_all()
+db.session.commit()

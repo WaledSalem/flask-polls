@@ -55,12 +55,6 @@ source env/bin/activate
 mysql.server start
 ```
 
-### Setup and seed the database
-```
-mysql -u root < db/setup.sql 
-python3 setup.py
-```
-
 ### Start the app 
 
 ```bash

@@ -1,5 +1,4 @@
-from marshmallow import Schema, fields
-
+from marshmallow import Schema, fields, validate
 from app.models import Question, Answer
 from app import ma
 
@@ -8,11 +7,11 @@ class AnswerSchema(ma.ModelSchema):
     class Meta(object):
         strict = True
         model = Answer
+        exclude = ['id']
 
 class QuestionSchema(ma.ModelSchema):
-    """A Question recieved by the API"""
-    correct_answer = fields.Nested(AnswerSchema, load_only=True)
-    answers = fields.Nested(AnswerSchema, many=True, exclude=('id'))
+    """Question Schema"""
+    answers = fields.Nested(AnswerSchema, many=True, validate=[validate.Length(min=2)])
     class Meta(object):
         strict = True
         model = Question

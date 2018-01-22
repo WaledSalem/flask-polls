@@ -11,7 +11,7 @@ from app import db
 class Questions(Resource):
     """Handles all batch requests about the Question entitiy as well as creating a new Question"""
 
-    @use_kwargs({'limit': fields.Integer(missing=10, validate=validate.Range(min=1, max=100))})
+    @use_kwargs({'limit': fields.Integer(missing=10, locations=('query',), validate=validate.Range(min=1, max=100))})
     def get(self, limit):
         """Get all questions"""
         questions = Question.query.limit(limit).all()
@@ -26,11 +26,26 @@ class Questions(Resource):
 
         return 'OK', 201
 
-    def delete(self):
+    @use_kwargs({'ids': fields.Integer(many=True, locations=('json',))})
+    def delete(self, ids):
         """Delete a list of questions"""
-        return 'TODO'
+        questions = []
+        # First make sure all questions can be found
+        for id in ids:
+            questions.append(Question.query.get_or_404(id=id))
+        # Delete all of questions
+        for question in questions:
+            db.session.delete(question)
+        db.session.commit()
 
-    # @use_kwargs()
-    def put(self):
+        return 'OK', 200
+
+    @use_args(questions_schema)
+    def put(self, questions):
         """Update a list of questions"""
-        return 'TODO'
+        # First make sure all questions can be found
+        for question in questions:
+            Question.query.get_or_404(id=question.id)
+        db.session.commit()
+
+        return 'OK', 204
